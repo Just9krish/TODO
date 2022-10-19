@@ -1,0 +1,50 @@
+.header {
+  $root: &;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 540px;
+  margin: 0 auto;
+  margin-bottom: 48px;
+
+  &__title {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: 15px;
+    color: #fff;
+  }
+
+  &__switch {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    &:focus {
+      outline: 2px dotted $clr-text;
+      outline-offset: 2px;
+    }
+  }
+
+//   &__switch-icon {
+//     &--sun,
+//     &--moon {
+//       position: absolute;
+//     }
+
+//     &--sun {
+//       &::before {
+//         opacity: 0;
+//         transition: opacity 300ms ease-in;
+//       }
+//     }
+
+//     &--moon {
+//       &::before {
+//         opacity: 0;
+//         transition: opacity 300ms ease-in;
+//       }
+//     }
+//   }
+}

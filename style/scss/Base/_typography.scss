@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300;400&display=swap");
+
+html {
+  font-size: 16px;
+}
+
+body {
+  min-height: 100vh;
+  font-family: $ff-primary;
+  background: $clr-gray-light;
+  transition: background-color 1s;
+  padding: 48px 24px 0px 24px;
+
+  @include breakpoint("sm") {
+    padding: 70px 24px 0 24px;
+  }
+}

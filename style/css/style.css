@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300;400&display=swap");
+:root {
+  --lt-bg: hsl(0, 0%, 100%);
+  --lt-bg-list: hsl(0, 0%, 98%);
+  --lt-text: hsl(235, 19%, 35%);
+  --lt-blue-grayish-very-light: hsl(236, 33%, 92%);
+  --lt-blue-grayish-light: hsl(233, 11%, 84%);
+  --lt-blue-grayish-very-dark: hsl(235, 19%, 35%);
+  --lt-blue-grayish-dark: hsl(236, 9%, 61%);
+  --lt-box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+  --dt-bg: hsl(235, 24%, 19%);
+  --dt-bg-list: hsl(235, 21%, 11%);
+  --dt-text: hsl(234, 39%, 85%);
+  --dt-blue-grayish-very-light: hsl(237, 14%, 26%);
+  --dt-blue-grayish-light: hsl(233, 14%, 27%);
+  --dt-blue-grayish-very-dark: hsl(237, 14%, 26%);
+  --dt-blue-grayish-dark: hsl(235, 16%, 43%);
+  --dt-box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
+  --clr-white: var(--lt-bg);
+  --clr-gray-light: var(--lt-bg-list);
+  --clr-blue-grayish-very-light: var(--lt-blue-grayish-very-light);
+  --clr-blue-grayish-light: var(--lt-blue-grayish-light);
+  --clr-blue-grayish-dark: var(--lt-blue-grayish-dark);
+  --clr-blue-grayish-very-dark: var(--lt-blue-grayish-very-dark);
+  --clr-text: var(--lt-text);
+  --clr-box-shadow: var(--lt-box-shadow);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --clr-white: var(--dt-bg);
+    --clr-gray-light: var(--dt-bg-list);
+    --clr-blue-grayish-very-light: var(--dt-blue-grayish-very-light);
+    --clr-blue-grayish-light: var(--dt-blue-grayish-light);
+    --clr-blue-grayish-dark: var(--dt-blue-grayish-dark);
+    --clr-blue-grayish-very-dark: var(--dt-blue-grayish-very-dark);
+    --clr-text: var(--dt-text);
+    --clr-box-shadow: var(--dt-box-shadow);
+  }
+}
+*,
+::before,
+::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+*::before,
+*::after {
+    -webkit-animation-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+            animation-iteration-count: 1 !important;
+    -webkit-transition-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+html {
+  font-size: 16px;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Josefin Sans", sans-serif;
+  background: var(--clr-gray-light);
+  -webkit-transition: background-color 1s;
+  transition: background-color 1s;
+  padding: 48px 24px 0px 24px;
+}
+@media (min-width: 481px) {
+  body {
+    padding: 70px 24px 0 24px;
+  }
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+}
+.background__img {
+  position: absolute;
+  height: 300px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 540px;
+  margin: 0 auto;
+  margin-bottom: 48px;
+}
+.header__title {
+  font-size: clamp(1.8rem, 6vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: 15px;
+  color: #fff;
+}
+.header__switch {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.header__switch:focus {
+  outline: 2px dotted var(--clr-text);
+  outline-offset: 2px;
+}
+
+.todo {
+  max-width: 540px;
+  margin: 0 auto;
+}
+.todo__form {
+  position: relative;
+  margin-bottom: 30px;
+}
+.todo__form::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 24px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--clr-blue-grayish-very-light);
+  border-radius: 50%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-transition: border 1s;
+  transition: border 1s;
+}
+.todo__form-input {
+  width: 100%;
+  height: 48px;
+  padding: 10px 5px 9px 74px;
+  border: none;
+  border-radius: 5px;
+  background: var(--clr-white);
+  font-family: "Josefin Sans", sans-serif;
+  font-size: clamp(0.8125rem, 3vw, 1.125rem);
+  color: var(--clr-text);
+  -webkit-transition: background 1s;
+  transition: background 1s;
+}
+.todo__form-input:focus {
+  outline: 2px dotted var(--clr-text);
+  outline-offset: 2px;
+}

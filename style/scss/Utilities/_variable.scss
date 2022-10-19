@@ -1,0 +1,22 @@
+// colors
+$clr-white: var(--clr-white);
+$clr-gray-light: var(--clr-gray-light);
+$clr-blue-grayish-very-light: var(--clr-blue-grayish-very-light);
+$clr-blue-grayish-light: var(--clr-blue-grayish-light);
+$clr-blue-grayish-dark: var(--clr-blue-grayish-dark);
+$clr-blue-grayish-very-dark: var(--clr-blue-grayish-very-dark);
+$clr-text: var(--clr-text);
+$clr-box-shadow: var(--clr-box-shadow);
+
+$bg-check: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+
+// Fonts
+$ff-primary: "Josefin Sans", sans-serif;
+$ff-secondary: "Lexend", sans-serif;
+
+// Media query breakpoints
+$breakpoints: (
+  "sm": 481px,
+  "md": 769px,
+  "lg": 1025px,
+);

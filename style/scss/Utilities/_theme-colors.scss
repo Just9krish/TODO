@@ -1,0 +1,43 @@
+:root {
+  // Light Theme
+  --lt-bg: hsl(0, 0%, 100%);
+  --lt-bg-list: hsl(0, 0%, 98%);
+  --lt-text: hsl(235, 19%, 35%);
+  --lt-blue-grayish-very-light: hsl(236, 33%, 92%);
+  --lt-blue-grayish-light: hsl(233, 11%, 84%);
+  --lt-blue-grayish-very-dark: hsl(235, 19%, 35%);
+  --lt-blue-grayish-dark: hsl(236, 9%, 61%);
+  --lt-box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+
+  // dark theme
+  --dt-bg: hsl(235, 24%, 19%);
+  --dt-bg-list: hsl(235, 21%, 11%);
+  --dt-text: hsl(234, 39%, 85%);
+  --dt-blue-grayish-very-light: hsl(237, 14%, 26%);
+  --dt-blue-grayish-light: hsl(233, 14%, 27%);
+  --dt-blue-grayish-very-dark: hsl(237, 14%, 26%);
+  --dt-blue-grayish-dark: hsl(235, 16%, 43%);
+  --dt-box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
+
+  --clr-white: var(--lt-bg);
+  --clr-gray-light: var(--lt-bg-list);
+  --clr-blue-grayish-very-light: var(--lt-blue-grayish-very-light);
+  --clr-blue-grayish-light: var(--lt-blue-grayish-light);
+  --clr-blue-grayish-dark: var(--lt-blue-grayish-dark);
+  --clr-blue-grayish-very-dark: var(--lt-blue-grayish-very-dark);
+  --clr-text: var(--lt-text);
+  --clr-box-shadow: var(--lt-box-shadow);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --clr-white: var(--dt-bg);
+    --clr-gray-light: var(--dt-bg-list);
+    --clr-blue-grayish-very-light: var(--dt-blue-grayish-very-light);
+    --clr-blue-grayish-light: var(--dt-blue-grayish-light);
+    --clr-blue-grayish-dark: var(--dt-blue-grayish-dark);
+    --clr-blue-grayish-very-dark: var(--dt-blue-grayish-very-dark);
+    --clr-text: var(--dt-text);
+    --clr-box-shadow: var(--dt-box-shadow);
+  }
+}
