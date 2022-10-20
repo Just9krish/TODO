@@ -1,0 +1,23 @@
+.todo {
+  $root: &;
+
+  &__list {
+    
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 52px;
+    padding: 0 24px;
+    border-bottom: 1px solid $clr-blue-grayish-light;
+    color: $clr-text;
+    transition: border 1s;
+  }
+
+  &__item-input {
+    // position: absolute;
+    // opacity: 0;
+  }
+}

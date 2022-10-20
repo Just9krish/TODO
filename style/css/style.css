@@ -286,3 +286,21 @@ body {
   -webkit-transition: color 300ms ease-in;
   transition: color 300ms ease-in;
 }
+
+.todo__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 52px;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--clr-blue-grayish-light);
+  color: var(--clr-text);
+  -webkit-transition: border 1s;
+  transition: border 1s;
+}
