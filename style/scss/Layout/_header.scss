@@ -27,24 +27,10 @@
     }
   }
 
-//   &__switch-icon {
-//     &--sun,
-//     &--moon {
-//       position: absolute;
-//     }
-
-//     &--sun {
-//       &::before {
-//         opacity: 0;
-//         transition: opacity 300ms ease-in;
-//       }
-//     }
-
-//     &--moon {
-//       &::before {
-//         opacity: 0;
-//         transition: opacity 300ms ease-in;
-//       }
-//     }
-//   }
+  &__switch-icon {
+    &--sun {
+      position:absolute;
+      opacity: 0;
+    }
+  }
 }
