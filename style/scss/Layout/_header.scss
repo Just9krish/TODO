@@ -29,8 +29,22 @@
 
   &__switch-icon {
     &--sun {
-      position:absolute;
+      position: absolute;
       opacity: 0;
+      transition: opacity 300ms ease-in;
+    }
+
+    body[data-theme="dark"] &--sun {
+      opacity: 1;
+    }
+
+    &--moon {
+      opacity: 0;
+      transition: opacity 300ms ease-in;
+    }
+
+    body[data-theme="light"] &--moon {
+      opacity: 1;
     }
   }
 }

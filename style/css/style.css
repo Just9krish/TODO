@@ -123,6 +123,7 @@ body {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  opacity: 0;
   -webkit-transition: opacity 1s;
   transition: opacity 1s;
 }
@@ -172,6 +173,19 @@ body[data-theme=dark] .background__img--dark {
 .header__switch-icon--sun {
   position: absolute;
   opacity: 0;
+  -webkit-transition: opacity 300ms ease-in;
+  transition: opacity 300ms ease-in;
+}
+body[data-theme=dark] .header__switch-icon--sun {
+  opacity: 1;
+}
+.header__switch-icon--moon {
+  opacity: 0;
+  -webkit-transition: opacity 300ms ease-in;
+  transition: opacity 300ms ease-in;
+}
+body[data-theme=light] .header__switch-icon--moon {
+  opacity: 1;
 }
 
 .todo {
