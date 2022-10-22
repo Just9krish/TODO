@@ -12,5 +12,22 @@
     height: 300px;
     width: 100%;
     object-fit: cover;
+    transition: opacity 1s;
+
+    &--light {
+      opacity: 0;
+    }
+
+    body[data-theme="light"] &--light{
+      opacity: 1;
+    }
+
+    &--dark {
+      opacity: 0;
+    }
+
+    body[data-theme="dark"] &--dark{
+      opacity: 1;
+    }
   }
 }
