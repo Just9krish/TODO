@@ -10,6 +10,7 @@ todoForm.addEventListener("submit", addTodo);
 
 function addTodo(event) {
   event.preventDefault();
+  if (!formValidation(todoInput.value)) return;
 
   if (todos == null) {
     todos = [];
@@ -18,7 +19,7 @@ function addTodo(event) {
   }
 
   todos.push(todoInput.value);
-  todoInput.value = "";
+  todoForm.reset();
   localStorage.setItem("savedTodo", JSON.stringify(todos));
   renderList();
 }
@@ -57,8 +58,24 @@ function renderList() {
 function removeTodo(index) {
   todos = JSON.parse(localStorage.getItem("savedTodo"));
   todos.splice(index, 1);
-  localStorage.setItem("savedTodo", JSON.stringify(todos))
+  localStorage.setItem("savedTodo", JSON.stringify(todos));
   renderList();
+}
+
+// function to verify form
+function formValidation(value) {
+  if (!value.trim()) {
+    todoForm.reset();
+    console.log("Error! Todo cannot be blank");
+    return false;
+  } else if (value.length >= 35) {
+    todoForm.reset();
+    console.log("Error! Maximum 35 character");
+    return false;
+  } else {
+    console.log("success! Todo has been added");
+    return true;
+  }
 }
 
 renderList();
