@@ -19,6 +19,15 @@
       height: 65px;
     }
 
+    &:hover #{$root}__span {
+      border-color: transparent;
+
+      &::before {
+        opacity: 1;
+        background-image: linear-gradient($clr-white, $clr-white), $bg-check;
+      }
+    }
+
     &:hover #{$root}__deleteBtn {
       opacity: 1;
       pointer-events: all;
@@ -61,6 +70,27 @@
     transform: translateY(-50%);
     left: 0;
     transition: border 500ms;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: "";
+      width: calc(100% - 1px);
+      height: calc(100% - 1px);
+      border: 1px solid transparent;
+      border-radius: 50%;
+      background-image: linear-gradient($clr-white, $clr-white),
+        linear-gradient(
+          to right,
+          $clr-blue-grayish-very-light,
+          $clr-blue-grayish-very-light
+        );
+      background-clip: content-box, border-box;
+      background-origin: border-box;
+      opacity: 0;
+      transition: opacity 1s;
+    }
   }
 
   &__deleteBtn {
@@ -72,7 +102,7 @@
     font-size: 1.1rem;
     opacity: 0;
     pointer-events: none;
-    fill: #494C6B;
+    fill: #494c6b;
     transition: opacity 200ms ease-in, fill 250ms ease-in;
 
     &:focus {

@@ -362,6 +362,14 @@ body[data-theme=light] .header__switch-icon--moon {
     height: 65px;
   }
 }
+.todo__item:hover .todo__span {
+  border-color: transparent;
+}
+.todo__item:hover .todo__span::before {
+  opacity: 1;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(var(--clr-white)), to(var(--clr-white))), -webkit-gradient(linear, left top, left bottom, from(hsl(192deg, 100%, 67%)), to(hsl(280deg, 87%, 65%)));
+  background-image: linear-gradient(var(--clr-white), var(--clr-white)), linear-gradient(hsl(192deg, 100%, 67%), hsl(280deg, 87%, 65%));
+}
 .todo__item:hover .todo__deleteBtn {
   opacity: 1;
   pointer-events: all;
@@ -408,6 +416,23 @@ body[data-theme=light] .header__switch-icon--moon {
   -webkit-transition: border 500ms;
   transition: border 500ms;
 }
+.todo__span::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(var(--clr-white)), to(var(--clr-white))), -webkit-gradient(linear, left top, right top, from(var(--clr-blue-grayish-very-light)), to(var(--clr-blue-grayish-very-light)));
+  background-image: linear-gradient(var(--clr-white), var(--clr-white)), linear-gradient(to right, var(--clr-blue-grayish-very-light), var(--clr-blue-grayish-very-light));
+  background-clip: content-box, border-box;
+  background-origin: border-box;
+  opacity: 0;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
+}
 .todo__deleteBtn {
   background: none;
   border: none;
@@ -417,7 +442,7 @@ body[data-theme=light] .header__switch-icon--moon {
   font-size: 1.1rem;
   opacity: 0;
   pointer-events: none;
-  fill: #494C6B;
+  fill: #494c6b;
   -webkit-transition: opacity 200ms ease-in, fill 250ms ease-in;
   transition: opacity 200ms ease-in, fill 250ms ease-in;
 }
