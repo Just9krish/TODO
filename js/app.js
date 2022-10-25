@@ -37,11 +37,15 @@ function renderList() {
   todoList.innerHTML = htmlCode;
 
   // console.log(document.querySelectorAll(".todo__item"))
-
-  document.querySelectorAll(".todo__item").forEach((item) => {
-    // console.log("clck");
-    addEventListener("click", () => toggleDone(item));
-  });
+let list = document.querySelector(".todo__list")
+list.addEventListener("click", function(e){
+  console.log(e.target.value)
+  // console.log(todos)
+})
+  // document.querySelectorAll(".todo__item").forEach((item) => {
+  //   console.log("clck");
+  //   addEventListener("click", (e) => console.log(e.target));
+  // });
 }
 
 // function to add todo into lists
@@ -95,9 +99,7 @@ function countActiveTodos() {
   let savedTodo;
   if (JSON.parse(localStorage.getItem("savedTodo")) == null) {
     savedTodo = [];
-    console.log("A");
   } else {
-    console.log("b");
     savedTodo = JSON.parse(localStorage.getItem("savedTodo"));
   }
 
@@ -111,10 +113,10 @@ function countActiveTodos() {
 
 // function to done/undone on click
 function toggleDone(item) {
-  console.log(item)
+  console.log(item);
   let checkbox = item.querySelector(".todo__item-input");
   let index = checkbox.dataset.index;
-  console.log(index)
+  console.log(index);
 
   todos[index].done = !todos[index].done;
   console.log(todos[index].done);
