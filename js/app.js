@@ -23,7 +23,7 @@ function renderList() {
             <span class="todo__label-text">${list.text}</span>
             <span class="todo__span"></span>
         </label>
-        <button class="todo__deleteBtn" onclick="removeTodo(${index})">
+        <button class="todo__deleteBtn" onclick="(e) => removeTodo(${index}, e)">
             <svg class="todo__deleteBtn-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
                 <path fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/>
             </svg>
@@ -49,20 +49,23 @@ function addTodo(event) {
   todos = JSON.parse(localStorage.getItem("savedTodo")) || [];
   todos.push(todo);
 
-  todoForm.reset();
   localStorage.setItem("savedTodo", JSON.stringify(todos));
+  todoForm.reset();
 
   renderList();
   countActiveTodos();
+  // console.log(todos)
 }
 
 // function to remove specific todo
-function removeTodo(index) {
+function removeTodo(index, e) {
+  e.preventDefault()
   todos = JSON.parse(localStorage.getItem("savedTodo"));
   todos.splice(index, 1);
   renderList();
   countActiveTodos();
   localStorage.setItem("savedTodo", JSON.stringify(todos));
+  console.log(todos)
 }
 
 // function to verify form
@@ -113,7 +116,7 @@ function toggleDone(e) {
 
 renderList();
 countActiveTodos();
-todoForm.addEventListener("submit", (e) => addTodo(e));
+todoForm.addEventListener("submit", (event) => addTodo(event));
 
 document
   .querySelector(".todo__list")

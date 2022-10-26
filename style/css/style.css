@@ -374,6 +374,9 @@ body[data-theme=light] .header__switch-icon--moon {
   opacity: 1;
   pointer-events: all;
 }
+.todo__item:hover .todo__item-input:checked + .todo__label .todo__span::before {
+  display: none;
+}
 .todo__item.completed .todo__label-text::after {
   width: 100%;
   opacity: 1;
@@ -500,6 +503,7 @@ body[data-theme=light] .header__switch-icon--moon {
   outline: 2px dotted var(--clr-text);
   outline-offset: 2px;
   opacity: 1;
+  pointer-events: all;
 }
 .todo__deleteBtn:hover {
   fill: #ff4136;

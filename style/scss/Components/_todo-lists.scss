@@ -35,6 +35,14 @@
       pointer-events: all;
     }
 
+    // Prevent to show circle border while input is checked
+    &:hover
+      #{$root}__item-input:checked
+      + #{$root}__label
+      #{$root}__span::before {
+      display: none;
+    }
+
     // styles while todo is completed
     &.completed {
       // label text line through
@@ -63,6 +71,7 @@
       outline-offset: 2px;
     }
 
+    // change check circle background while input is checked 
     &:checked + #{$root}__label #{$root}__span {
       background: $bg-check;
       border: 1px;
@@ -96,6 +105,7 @@
     transition: color 250ms ease-in;
     position: relative;
 
+    // line through for todo__item-input:checked 
     &::after {
       content: "";
       position: absolute;
@@ -121,6 +131,7 @@
     left: 0;
     transition: border 500ms;
 
+    // check circle boder
     &::before {
       position: absolute;
       top: 0;
@@ -142,6 +153,7 @@
       transition: opacity 1s;
     }
 
+    // checkmark sign
     &::after {
       content: "";
       border: solid #fff;
@@ -172,6 +184,7 @@
       outline: 2px dotted $clr-text;
       outline-offset: 2px;
       opacity: 1;
+      pointer-events: all;
     }
 
     &:hover {
