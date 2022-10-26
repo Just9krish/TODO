@@ -1,5 +1,3 @@
-// import { sampleTodo } from "./sampleTodo";
-
 const todoForm = document.querySelector(".todo__form");
 const todoInput = document.querySelector(".todo__form-input");
 const todoList = document.querySelector(".todo__list");
@@ -52,10 +50,10 @@ function addTodo(event) {
   todos.push(todo);
 
   todoForm.reset();
+  localStorage.setItem("savedTodo", JSON.stringify(todos));
+
   renderList();
   countActiveTodos();
-  localStorage.setItem("savedTodo", JSON.stringify(todos));
-  console.log(todos);
 }
 
 // function to remove specific todo
@@ -115,7 +113,7 @@ function toggleDone(e) {
 
 renderList();
 countActiveTodos();
-todoForm.addEventListener("submit", addTodo);
+todoForm.addEventListener("submit", (e) => addTodo(e));
 
 document
   .querySelector(".todo__list")
