@@ -374,12 +374,35 @@ body[data-theme=light] .header__switch-icon--moon {
   opacity: 1;
   pointer-events: all;
 }
+.todo__item.completed .todo__label-text::after {
+  width: 100%;
+  opacity: 1;
+}
+.todo__item.completed .todo__label-text {
+  color: var(--clr-blue-grayish-light);
+}
 .todo__item-input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
   height: 0;
   width: 0;
+}
+.todo__item-input:focus + .todo__label .todo__span {
+  outline: 2px dotted var(--clr-text);
+  outline-offset: 2px;
+}
+.todo__item-input:checked + .todo__label .todo__span {
+  background: -webkit-gradient(linear, left top, left bottom, from(hsl(192deg, 100%, 67%)), to(hsl(280deg, 87%, 65%)));
+  background: linear-gradient(hsl(192deg, 100%, 67%), hsl(280deg, 87%, 65%));
+  border: 1px;
+  border-color: transparent;
+}
+.todo__item-input:checked + .todo__label .todo__span:after {
+  display: block;
+}
+.todo__item-input:checked + .todo__span:after {
+  display: block;
 }
 .todo__label {
   display: -webkit-box;
@@ -402,6 +425,20 @@ body[data-theme=light] .header__switch-icon--moon {
   -webkit-transition: color 250ms ease-in;
   transition: color 250ms ease-in;
   position: relative;
+}
+.todo__label-text::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 0;
+  height: 1px;
+  width: 0%;
+  background: var(--clr-blue-grayish-light);
+  opacity: 0;
+  -webkit-transition: all 300ms ease-in;
+  transition: all 300ms ease-in;
 }
 .todo__span {
   border: 1px solid var(--clr-blue-grayish-very-light);
@@ -432,6 +469,19 @@ body[data-theme=light] .header__switch-icon--moon {
   opacity: 0;
   -webkit-transition: opacity 1s;
   transition: opacity 1s;
+}
+.todo__span::after {
+  content: "";
+  border: solid #fff;
+  border-width: 0px 2px 2px 0px;
+  position: absolute;
+  left: 11px;
+  top: 8px;
+  width: 4px;
+  height: 7px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  display: none;
 }
 .todo__deleteBtn {
   background: none;

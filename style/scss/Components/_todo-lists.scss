@@ -19,6 +19,7 @@
       height: 65px;
     }
 
+    // Swap gray checkbox cirle border to gradient.
     &:hover #{$root}__span {
       border-color: transparent;
 
@@ -28,9 +29,24 @@
       }
     }
 
+    // Display delete button(cross sign).
     &:hover #{$root}__deleteBtn {
       opacity: 1;
       pointer-events: all;
+    }
+
+    // styles while todo is completed
+    &.completed {
+      // label text line through
+      #{$root}__label-text::after {
+        width: 100%;
+        opacity: 1;
+      }
+
+      // label text color
+      #{$root}__label-text {
+        color: $clr-blue-grayish-light;
+      }
     }
   }
 
@@ -40,6 +56,27 @@
     cursor: pointer;
     height: 0;
     width: 0;
+
+    // Add outline on span while input is focused.
+    &:focus + #{$root}__label #{$root}__span {
+      outline: 2px dotted $clr-text;
+      outline-offset: 2px;
+    }
+
+    &:checked + #{$root}__label #{$root}__span {
+      background: $bg-check;
+      border: 1px;
+      border-color: transparent;
+    }
+
+    // Display checkmark sign in check circle after input is checked
+    &:checked + #{$root}__label #{$root}__span:after {
+      display: block;
+    }
+
+    &:checked + #{$root}__span:after {
+      display: block;
+    }
   }
 
   &__label {
@@ -58,6 +95,19 @@
     font-size: clamp(0.9rem, 5vw, 1.125rem);
     transition: color 250ms ease-in;
     position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      height: 1px;
+      width: 0%;
+      background: $clr-blue-grayish-light;
+      opacity: 0;
+      transition: all 300ms ease-in;
+    }
   }
 
   &__span {
@@ -90,6 +140,19 @@
       background-origin: border-box;
       opacity: 0;
       transition: opacity 1s;
+    }
+
+    &::after {
+      content: "";
+      border: solid #fff;
+      border-width: 0px 2px 2px 0px;
+      position: absolute;
+      left: 11px;
+      top: 8px;
+      width: 4px;
+      height: 7px;
+      transform: rotate(45deg);
+      display: none;
     }
   }
 
