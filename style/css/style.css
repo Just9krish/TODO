@@ -280,7 +280,7 @@ body[data-theme=light] .header__switch-icon--moon {
   color: var(--clr-text);
   font-weight: 600;
 }
-.todo__menu-tabs-item:active {
+.todo__menu-tabs-item.active {
   color: hsl(220deg, 98%, 61%);
 }
 .todo__menu-tabs-item:focus {

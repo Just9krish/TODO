@@ -7,6 +7,7 @@ const tabs = document.querySelectorAll("[data-tabs]");
 
 let todos = JSON.parse(localStorage.getItem("savedTodo")) || [];
 
+// function to desplay todo depending on uers choice
 function displayTodos(tab = "all") {
   todos = JSON.parse(localStorage.getItem("savedTodo")) || [];
   console.log(todos);
@@ -15,23 +16,30 @@ function displayTodos(tab = "all") {
   countActiveTodos();
 
   todos.forEach((todo, index) => {
-    if ((tab == "all")) {
+    if (tab == "all") {
       renderList(todo, index);
-    } else if ((tab == "active" && !todo.done)) {
+    } else if (tab == "active" && !todo.done) {
       renderList(todo, index);
-    } else if ((tab == "completed" && todo.done)) {
+    } else if (tab == "completed" && todo.done) {
       renderList(todo, index);
     }
   });
 }
 
+// function to remove child of given list
 function removeAllTodos(list) {
   while (list.firstChild) {
     list.removeChild(list.firstChild);
   }
 }
 
-// function to display todo list
+// function to add active class to selected tab
+function showActiveTab(isActive = false) {
+  tabs.forEach((tab) => tab.classList.remove("active"));
+  isActive ? isActive.classList.add("active") : null;
+}
+
+// function to render todo
 function renderList(list, index) {
   let htmlCode = `<li class="todo__item ${
     list.done ? "completed" : ""
@@ -70,9 +78,9 @@ function addTodo(event) {
   localStorage.setItem("savedTodo", JSON.stringify(todos));
   todoForm.reset();
 
+  showActiveTab(tabs[0]);
   displayTodos();
   countActiveTodos();
-  // console.log(todos)
 }
 
 // function to remove specific todo
@@ -134,6 +142,7 @@ function toggleDone(e) {
   countActiveTodos();
 }
 
+// function to remove completed todo
 function removeCompletedTodos() {
   todos = JSON.parse(localStorage.getItem("savedTodo"));
 
@@ -145,13 +154,13 @@ function removeCompletedTodos() {
   countActiveTodos();
 }
 
-function checkIfCompleted() {
-  let completedResult = 0;
-  let activeResult = 0;
+// function checkIfCompleted() {
+//   let completedResult = 0;
 
-  todos.forEach((todo) => (todo.done ? completedResult++ : activeResult++));
-}
+//   todos.forEach((todo) => (todo.done ? completedResult++ : null));
+// }
 
+// Event listenres
 displayTodos();
 countActiveTodos();
 todoForm.addEventListener("submit", (event) => addTodo(event));
@@ -165,6 +174,7 @@ clearCompleted.addEventListener("click", removeCompletedTodos);
 tabs.forEach((tab) =>
   tab.addEventListener("click", (event) => {
     let activeTab = event.target.dataset.tabs;
+    showActiveTab(tab);
     displayTodos(activeTab);
   })
 );
