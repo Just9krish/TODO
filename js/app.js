@@ -62,9 +62,9 @@ function removeTodo(index) {
   // e.stopPropagation()
   todos = JSON.parse(localStorage.getItem("savedTodo"));
   todos.splice(index, 1);
+  localStorage.setItem("savedTodo", JSON.stringify(todos));
   renderList();
   countActiveTodos();
-  localStorage.setItem("savedTodo", JSON.stringify(todos));
   console.log(todos)
 }
 
