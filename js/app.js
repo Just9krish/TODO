@@ -2,6 +2,7 @@ const todoForm = document.querySelector(".todo__form");
 const todoInput = document.querySelector(".todo__form-input");
 const todoList = document.querySelector(".todo__list");
 const toodsCounter = document.querySelector(".todo__menu-counter");
+const clearCompleted = document.querySelector("[data-clear]");
 
 let todos = JSON.parse(localStorage.getItem("savedTodo")) || [];
 
@@ -17,8 +18,12 @@ function renderList() {
 
   todos.forEach((list, index) => {
     htmlCode += `
-    <li class="todo__item ${list.done ? "completed" : ""}" data-index="${index}">
-        <input id="item${index}" class="todo__item-input" ${list.done ? 'checked' : ''} type="checkbox" />
+    <li class="todo__item ${
+      list.done ? "completed" : ""
+    }" data-index="${index}">
+        <input id="item${index}" class="todo__item-input" ${
+      list.done ? "checked" : ""
+    } type="checkbox" />
         <label class="todo__label" for="item${index}">
             <span class="todo__label-text">${list.text}</span>
             <span class="todo__span"></span>
@@ -65,7 +70,7 @@ function removeTodo(index) {
   localStorage.setItem("savedTodo", JSON.stringify(todos));
   renderList();
   countActiveTodos();
-  console.log(todos)
+  console.log("Sucess! Todo has been added");
 }
 
 // function to verify form
@@ -99,6 +104,8 @@ function countActiveTodos() {
 
 // function to done/undone on click
 function toggleDone(e) {
+  if (e.target.matches("button")) return;
+
   e.preventDefault();
   const idx = e.target.closest("li").dataset.index;
   const item = e.target.closest("li");
@@ -112,7 +119,17 @@ function toggleDone(e) {
 
   localStorage.setItem("savedTodo", JSON.stringify(todos));
   countActiveTodos();
-  console.log("toggle runnig")
+  console.log("toggle runnig");
+}
+
+function removeCompletedTodos() {
+  todos = JSON.parse(localStorage.getItem("savedTodo"));
+
+  const filteredTodos = todos.filter((todo) => !todo.done);
+  console.log(filteredTodos);
+  localStorage.setItem("savedTodo", JSON.stringify(filteredTodos));
+  renderList();
+  countActiveTodos();
 }
 
 renderList();
@@ -123,3 +140,4 @@ document
   .querySelector(".todo__list")
   .addEventListener("click", (event) => toggleDone(event));
 
+clearCompleted.addEventListener("click", removeCompletedTodos);
