@@ -407,6 +407,23 @@ body[data-theme=light] .header__switch-icon--moon {
 .todo__item-input:checked + .todo__span:after {
   display: block;
 }
+.todo__item-info {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding: 0 10px;
+  font-size: clamp(0.825rem, 4vw, 1.125rem);
+}
+@media (min-width: 481px) {
+  .todo__item-info {
+    padding: 0 24px;
+  }
+}
+.todo__item-info-icon {
+  font-size: 1.5rem;
+  margin-right: 10px;
+  fill: hsl(220deg, 98%, 61%);
+}
 .todo__label {
   display: -webkit-box;
   display: -ms-flexbox;

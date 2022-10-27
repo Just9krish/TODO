@@ -71,7 +71,7 @@
       outline-offset: 2px;
     }
 
-    // change check circle background while input is checked 
+    // change check circle background while input is checked
     &:checked + #{$root}__label #{$root}__span {
       background: $bg-check;
       border: 1px;
@@ -86,6 +86,22 @@
     &:checked + #{$root}__span:after {
       display: block;
     }
+  }
+
+  &__item-info {
+    justify-content: flex-start;
+    padding: 0 10px;
+    font-size: clamp(0.825rem, 4vw, 1.125rem);
+
+    @include breakpoint("sm") {
+      padding: 0 24px;
+    }
+  }
+
+  &__item-info-icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    fill: $clr-blue-bright;
   }
 
   &__label {
@@ -105,7 +121,7 @@
     transition: color 250ms ease-in;
     position: relative;
 
-    // line through for todo__item-input:checked 
+    // line through for todo__item-input:checked
     &::after {
       content: "";
       position: absolute;
