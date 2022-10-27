@@ -59,7 +59,7 @@ function addTodo(event) {
 
 // function to remove specific todo
 function removeTodo(index) {
-  // e.preventDefault()
+  // e.stopPropagation()
   todos = JSON.parse(localStorage.getItem("savedTodo"));
   todos.splice(index, 1);
   renderList();
@@ -112,6 +112,7 @@ function toggleDone(e) {
 
   localStorage.setItem("savedTodo", JSON.stringify(todos));
   countActiveTodos();
+  console.log("toggle runnig")
 }
 
 renderList();
