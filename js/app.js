@@ -3,27 +3,42 @@ const todoInput = document.querySelector(".todo__form-input");
 const todoList = document.querySelector(".todo__list");
 const toodsCounter = document.querySelector(".todo__menu-counter");
 const clearCompleted = document.querySelector("[data-clear]");
+const tabs = document.querySelectorAll("[data-tabs]");
 
 let todos = JSON.parse(localStorage.getItem("savedTodo")) || [];
 
-// function to display todo list
-function renderList() {
-  if (localStorage.getItem("savedTodo") == null) {
-    todos = [];
-  } else {
-    todos = JSON.parse(localStorage.getItem("savedTodo"));
+
+function displayTodos(tab = "all") {
+  todos = JSON.parse(localStorage.getItem("savedTodo")) || [];
+  console.log(todos); 
+
+  removeAllTodos(todoList)
+  todos.forEach((todo, index) => {
+    if ((tab = "all")) {
+      renderList(todo, index);
+    } else if ((tab = "active" && !todo.done)) {
+      renderList(todo, index);
+    } else if ((tab = "completed" && todo.done)) {
+      renderList(todo, index);
+    }
+  });
+}
+
+function removeAllTodos(list) {
+  while (list.firstChild) {
+    list.removeChild(list.firstChild);
   }
+}
 
-  let htmlCode = "";
-
-  todos.forEach((list, index) => {
-    htmlCode += `
+// function to display todo list
+function renderList(list, index) {
+  let htmlCode = `
     <li class="todo__item ${
       list.done ? "completed" : ""
     }" data-index="${index}">
         <input id="item${index}" class="todo__item-input" ${
-      list.done ? "checked" : ""
-    } type="checkbox" />
+    list.done ? "checked" : ""
+  } type="checkbox" />
         <label class="todo__label" for="item${index}">
             <span class="todo__label-text">${list.text}</span>
             <span class="todo__span"></span>
@@ -35,9 +50,7 @@ function renderList() {
         </button>
     </li>
     `;
-  });
-
-  todoList.innerHTML = htmlCode;
+  todoList.innerHTML += htmlCode;
 }
 
 // function to add todo into lists
@@ -57,7 +70,7 @@ function addTodo(event) {
   localStorage.setItem("savedTodo", JSON.stringify(todos));
   todoForm.reset();
 
-  renderList();
+  displayTodos();
   countActiveTodos();
   // console.log(todos)
 }
@@ -68,7 +81,7 @@ function removeTodo(index) {
   todos = JSON.parse(localStorage.getItem("savedTodo"));
   todos.splice(index, 1);
   localStorage.setItem("savedTodo", JSON.stringify(todos));
-  renderList();
+  displayTodos();
   countActiveTodos();
   console.log("Sucess! Todo has been added");
 }
@@ -119,7 +132,6 @@ function toggleDone(e) {
 
   localStorage.setItem("savedTodo", JSON.stringify(todos));
   countActiveTodos();
-  console.log("toggle runnig");
 }
 
 function removeCompletedTodos() {
@@ -128,11 +140,19 @@ function removeCompletedTodos() {
   const filteredTodos = todos.filter((todo) => !todo.done);
   console.log(filteredTodos);
   localStorage.setItem("savedTodo", JSON.stringify(filteredTodos));
-  renderList();
+
+  displayTodos();
   countActiveTodos();
 }
 
-renderList();
+function checkIfCompleted() {
+  let completedResult = 0;
+  let activeResult = 0;
+
+  todos.forEach((todo) => (todo.done ? completedResult++ : activeResult++));
+}
+
+displayTodos();
 countActiveTodos();
 todoForm.addEventListener("submit", (event) => addTodo(event));
 
@@ -141,3 +161,10 @@ document
   .addEventListener("click", (event) => toggleDone(event));
 
 clearCompleted.addEventListener("click", removeCompletedTodos);
+
+tabs.forEach((tab) =>
+  tab.addEventListener("click", (event) => {
+    let activeTab = event.target.dataset.tabs;
+    console.log(activeTab);
+  })
+);
