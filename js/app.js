@@ -7,18 +7,19 @@ const tabs = document.querySelectorAll("[data-tabs]");
 
 let todos = JSON.parse(localStorage.getItem("savedTodo")) || [];
 
-
 function displayTodos(tab = "all") {
   todos = JSON.parse(localStorage.getItem("savedTodo")) || [];
-  console.log(todos); 
+  console.log(todos);
 
-  removeAllTodos(todoList)
+  removeAllTodos(todoList);
+  countActiveTodos();
+
   todos.forEach((todo, index) => {
-    if ((tab = "all")) {
+    if ((tab == "all")) {
       renderList(todo, index);
-    } else if ((tab = "active" && !todo.done)) {
+    } else if ((tab == "active" && !todo.done)) {
       renderList(todo, index);
-    } else if ((tab = "completed" && todo.done)) {
+    } else if ((tab == "completed" && todo.done)) {
       renderList(todo, index);
     }
   });
@@ -32,10 +33,9 @@ function removeAllTodos(list) {
 
 // function to display todo list
 function renderList(list, index) {
-  let htmlCode = `
-    <li class="todo__item ${
-      list.done ? "completed" : ""
-    }" data-index="${index}">
+  let htmlCode = `<li class="todo__item ${
+    list.done ? "completed" : ""
+  }" data-index="${index}">
         <input id="item${index}" class="todo__item-input" ${
     list.done ? "checked" : ""
   } type="checkbox" />
@@ -138,7 +138,7 @@ function removeCompletedTodos() {
   todos = JSON.parse(localStorage.getItem("savedTodo"));
 
   const filteredTodos = todos.filter((todo) => !todo.done);
-  console.log(filteredTodos);
+
   localStorage.setItem("savedTodo", JSON.stringify(filteredTodos));
 
   displayTodos();
@@ -165,6 +165,6 @@ clearCompleted.addEventListener("click", removeCompletedTodos);
 tabs.forEach((tab) =>
   tab.addEventListener("click", (event) => {
     let activeTab = event.target.dataset.tabs;
-    console.log(activeTab);
+    displayTodos(activeTab);
   })
 );
