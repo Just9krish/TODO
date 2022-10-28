@@ -127,6 +127,7 @@ function countActiveTodos() {
 // function to done/undone on click
 function toggleDone(e) {
   if (e.target.matches("button")) return;
+  if (todos.length == 0) return;
 
   e.preventDefault();
   const idx = e.target.closest("li").dataset.index;
