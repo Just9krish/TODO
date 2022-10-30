@@ -27,22 +27,9 @@ function displayTodos(tab = "all") {
   });
 }
 
-// function to remove child of given list
-function removeAllTodos(list) {
-  while (list.firstChild) {
-    list.removeChild(list.firstChild);
-  }
-}
-
-// function to add active class to selected tab
-function showActiveTab(isActive = false) {
-  tabs.forEach((tab) => tab.classList.remove("active"));
-  isActive ? isActive.classList.add("active") : null;
-}
-
 // function to render todo
 function renderList(list, index) {
-  let htmlCode = `<li class="todo__item ${
+  let htmlCode = `<li id=${list.id} class="todo__item ${
     list.done ? "completed" : ""
   }" data-index="${index}">
         <input id="item${index}" class="todo__item-input" ${
@@ -130,6 +117,7 @@ function toggleDone(e) {
   if (todos.length == 0) return;
 
   e.preventDefault();
+
   const idx = e.target.closest("li").dataset.index;
   const item = e.target.closest("li");
   const checkbox = item.querySelector(".todo__item-input");
@@ -155,6 +143,19 @@ function removeCompletedTodos() {
   showActiveTab(tabs[0]);
   displayTodos();
   countActiveTodos();
+}
+
+// function to remove child of given list
+function removeAllTodos(list) {
+  while (list.firstChild) {
+    list.removeChild(list.firstChild);
+  }
+}
+
+// function to add active class to selected tab
+function showActiveTab(isActive = false) {
+  tabs.forEach((tab) => tab.classList.remove("active"));
+  isActive ? isActive.classList.add("active") : null;
 }
 
 // function to render if todo is empty
@@ -184,6 +185,30 @@ function checkIfCompletedTodo(tab) {
     renderWhileEmpty(tab);
   }
 }
+
+// Sortable
+let sortable = Sortable.create(todoList, {
+  animation: 150,
+
+  onSort: () => {
+    let listItems = todoList.childNodes;
+    let oldTodos = JSON.parse(localStorage.getItem("savedTodo"));
+    let sortedTodos = [];
+    let todosId = [];
+
+    listItems.forEach((todo) => todosId.push(todo.id));
+
+    todosId.forEach((id) => {
+      oldTodos.forEach((item, index) => {
+        if (id == item.id) {
+          sortedTodos.push(item);
+          oldTodos.splice(index, 1);
+        }
+      });
+    });
+    localStorage.setItem("savedTodo", JSON.stringify(sortedTodos));
+  },
+});
 
 // Event listenres
 displayTodos();
