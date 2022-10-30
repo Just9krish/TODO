@@ -1,4 +1,13 @@
 export default class Modal {
+  constructor() {
+    this.intiateModalWrapper();
+  }
+
+  intiateModalWrapper() {
+    this.createModalWrapper();
+    this.modalWrapper.addEventListener("click", () => this.clear());
+  }
+
   createModalWrapper() {
     this.modalWrapper = document.createElement("div");
     this.modalWrapper.classList.add("modal");
@@ -7,16 +16,19 @@ export default class Modal {
 
   createModalElement() {
     this.modalElement = document.createElement("div");
-    this.modalElement.classList.add("modal__item")
+    this.modalElement.classList.add("modal__item");
     this.modalWrapper.appendChild(this.modalElement);
+
+    if (this.modalWrapper.childNodes.length > 2) {
+      this.modalWrapper.removeChild(this.modalWrapper.firstChild);
+    }
   }
 
   show(msg, state, icon) {
-    this.createModalWrapper();
     this.createModalElement();
-    this.modalElement.className=`modal__item modal__item--${state}`
+    this.modalElement.className = `modal__item modal__item--${state}`;
     this.modalElement.innerHTML = `<i class="modal__item-icon">${icon}</i> ${msg}`;
-    this.remove()
+    this.remove();
   }
 
   clear() {

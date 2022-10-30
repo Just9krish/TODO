@@ -585,12 +585,24 @@ body[data-theme=light] .header__switch-icon--moon {
 }
 .modal__item--success {
   background-color: #a8e063;
+  border-color: rgba(0, 0, 0, 0.3);
+}
+.modal__item--success:hover {
+  background-color: #ade26c;
 }
 .modal__item--error {
   background-color: #e52d27;
+  border-color: rgba(0, 0, 0, 0.3);
+}
+.modal__item--error:hover {
+  background-color: #e8433e;
 }
 .modal__item--info {
-  background-color: blue;
+  background-color: hsl(220deg, 98%, 61%);
+  border-color: rgba(0, 0, 0, 0.3);
+}
+.modal__item--info:hover {
+  background-color: #538cfd;
 }
 .modal__item-icon {
   fill: #fff;

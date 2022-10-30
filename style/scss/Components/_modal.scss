@@ -21,15 +21,31 @@
 
     &--success {
       background-color: #a8e063;
+      border-color: rgba(0, 0, 0, 0.3);
+
+      &:hover {
+        background-color: lighten(#a8e063, 2%);
+      }
     }
 
     &--error {
       background-color: #e52d27;
+      border-color: rgba(0, 0, 0, 0.3);
+
+      &:hover {
+        background-color: lighten(#e52d27, 5%);
+      }
     }
 
     &--info {
-      background-color: blue;
+      background-color: $clr-blue-bright;
+      border-color: rgba(0, 0, 0, 0.3);
+
+      &:hover {
+        background-color: lighten($clr-blue-bright, 5%);
+      }
     }
+
     &-icon {
       fill: #fff;
       font-size: 1.8rem;
