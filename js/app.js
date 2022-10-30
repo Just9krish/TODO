@@ -1,9 +1,12 @@
+import Modal from "./modal.js"
+
 const todoForm = document.querySelector(".todo__form");
 const todoInput = document.querySelector(".todo__form-input");
 const todoList = document.querySelector(".todo__list");
 const toodsCounter = document.querySelector(".todo__menu-counter");
 const clearCompleted = document.querySelector("[data-clear]");
 const tabs = document.querySelectorAll("[data-tabs]");
+var modal = new Modal();
 
 let todos = JSON.parse(localStorage.getItem("savedTodo")) || [];
 
@@ -39,7 +42,7 @@ function renderList(list, index) {
             <span class="todo__label-text">${list.text}</span>
             <span class="todo__span"></span>
         </label>
-        <button class="todo__deleteBtn" onclick="removeTodo(${index})">
+        <button class="todo__deleteBtn" data-delIndex="${index}">
             <svg class="todo__deleteBtn-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
                 <path fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/>
             </svg>
@@ -72,28 +75,41 @@ function addTodo(event) {
 }
 
 // function to remove specific todo
-function removeTodo(index) {
-  // e.stopPropagation()
-  todos = JSON.parse(localStorage.getItem("savedTodo"));
-  todos.splice(index, 1);
+// function removeTodo(index) {
+//   // e.stopPropagation()
+//   todos = JSON.parse(localStorage.getItem("savedTodo"));
+//   todos.splice(index, 1);
+//   localStorage.setItem("savedTodo", JSON.stringify(todos));
+//   displayTodos();
+//   countActiveTodos();
+//   console.log("Sucess! Todo has been added");
+// }
+
+function removeTodo(e) {
+  if (!e.target.matches("button")) return;
+  e.preventDefault();
+  modal.show("Success! Todo has been removed.")
+
+  let idx = e.target.dataset.delindex;
+  todos.splice(idx, 1);
+
   localStorage.setItem("savedTodo", JSON.stringify(todos));
   displayTodos();
   countActiveTodos();
-  console.log("Sucess! Todo has been added");
 }
 
 // function to verify form
 function formValidation(value) {
   if (!value.trim()) {
+    modal.show("Error! Todo cannot be blank");
     todoForm.reset();
-    console.log("Error! Todo cannot be blank");
     return false;
   } else if (value.length >= 35) {
+    modal.show("Error! Maximum 35 character");
     todoForm.reset();
-    console.log("Error! Maximum 35 character");
     return false;
   } else {
-    console.log("success! Todo has been added");
+    modal.show("success! Todo has been added");
     return true;
   }
 }
@@ -215,9 +231,10 @@ displayTodos();
 countActiveTodos();
 todoForm.addEventListener("submit", (event) => addTodo(event));
 
-document
-  .querySelector(".todo__list")
-  .addEventListener("click", (event) => toggleDone(event));
+document.querySelector(".todo__list").addEventListener("click", (event) => {
+  toggleDone(event);
+  removeTodo(event);
+});
 
 clearCompleted.addEventListener("click", removeCompletedTodos);
 
@@ -228,3 +245,5 @@ tabs.forEach((tab) =>
     displayTodos(activeTab);
   })
 );
+
+// Class for creating a modal

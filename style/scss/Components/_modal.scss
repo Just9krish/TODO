@@ -1,0 +1,19 @@
+.modal {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 550px;
+  width: calc(100% - 48px);
+
+  &__item {
+    background: $clr-modal-regular;
+    color: #000;
+    padding: 13px;
+    margin-bottom: 10px;
+    font-family: $ff-secondary;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+}
