@@ -11,10 +11,11 @@ export default class Modal {
     this.modalWrapper.appendChild(this.modalElement);
   }
 
-  show(msg) {
+  show(msg, state, icon) {
     this.createModalWrapper();
     this.createModalElement();
-    this.modalElement.innerHTML = msg;
+    this.modalElement.className=`modal__item modal__item--${state}`
+    this.modalElement.innerHTML = `<i class="modal__item-icon">${icon}</i> ${msg}`;
     this.remove()
   }
 

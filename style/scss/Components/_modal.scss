@@ -15,5 +15,25 @@
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    display: flex;
+    align-items: center;
+
+    &--success {
+      background-color: #a8e063;
+    }
+
+    &--error {
+      background-color: #e52d27;
+    }
+
+    &--info {
+      background-color: blue;
+    }
+    &-icon {
+      fill: #fff;
+      font-size: 1.8rem;
+      margin-right: 13px;
+    }
   }
 }

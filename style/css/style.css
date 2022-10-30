@@ -575,4 +575,25 @@ body[data-theme=light] .header__switch-icon--moon {
   border: 1px solid rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.modal__item--success {
+  background-color: #a8e063;
+}
+.modal__item--error {
+  background-color: #e52d27;
+}
+.modal__item--info {
+  background-color: blue;
+}
+.modal__item-icon {
+  fill: #fff;
+  font-size: 1.8rem;
+  margin-right: 13px;
 }
